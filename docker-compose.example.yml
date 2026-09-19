@@ -1,0 +1,207 @@
+# Docker Compose para Desenvolvimento Local
+# Copie este arquivo para docker-compose.yml quando iniciar o desenvolvimento
+# Ajuste as portas e senhas conforme necessário
+
+version: '3.8'
+
+services:
+  # ============================================
+  # PostgreSQL - Banco de dados principal
+  # ============================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: marketplace-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: dev_password_change_me
+      POSTGRES_DB: marketplace
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - marketplace-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U marketplace']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # Redis - Cache e sessões
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: marketplace-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass dev_redis_password
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - marketplace-network
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # MailHog - Servidor SMTP de desenvolvimento
+  # Interface web: http://localhost:8025
+  # ============================================
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: marketplace-mailhog
+    restart: unless-stopped
+    ports:
+      - '1025:1025' # SMTP
+      - '8025:8025' # Web UI
+    networks:
+      - marketplace-network
+
+  # ============================================
+  # MinIO - Storage S3-compatible local
+  # Interface web: http://localhost:9001
+  # Credenciais: minioadmin / minioadmin
+  # ============================================
+  minio:
+    image: minio/minio:latest
+    container_name: marketplace-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - '9000:9000' # API
+      - '9001:9001' # Console
+    volumes:
+      - minio_data:/data
+    networks:
+      - marketplace-network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # ============================================
+  # Elasticsearch (Opcional - para busca avançada)
+  # Descomente se quiser usar Elasticsearch
+  # ============================================
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
+  #   container_name: marketplace-elasticsearch
+  #   restart: unless-stopped
+  #   environment:
+  #     - discovery.type=single-node
+  #     - xpack.security.enabled=false
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #   ports:
+  #     - '9200:9200'
+  #   volumes:
+  #     - elasticsearch_data:/usr/share/elasticsearch/data
+  #   networks:
+  #     - marketplace-network
+
+  # ============================================
+  # pgAdmin - Interface web para PostgreSQL
+  # Interface web: http://localhost:5050
+  # Credenciais: admin@marketplace.com / admin
+  # ============================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: marketplace-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@marketplace.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - '5050:80'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - marketplace-network
+    depends_on:
+      - postgres
+
+# ============================================
+# Volumes persistentes
+# ============================================
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  minio_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+  # elasticsearch_data:
+  #   driver: local
+
+# ============================================
+# Rede interna
+# ============================================
+networks:
+  marketplace-network:
+    driver: bridge
+
+# ============================================
+# Como usar:
+# ============================================
+# 
+# 1. Iniciar todos os serviços:
+#    docker-compose up -d
+# 
+# 2. Ver logs:
+#    docker-compose logs -f
+# 
+# 3. Parar todos os serviços:
+#    docker-compose down
+# 
+# 4. Parar e remover volumes (CUIDADO: apaga dados):
+#    docker-compose down -v
+# 
+# 5. Recriar um serviço específico:
+#    docker-compose up -d --force-recreate postgres
+# 
+# 6. Acessar shell do PostgreSQL:
+#    docker exec -it marketplace-db psql -U marketplace
+# 
+# 7. Acessar Redis CLI:
+#    docker exec -it marketplace-redis redis-cli -a dev_redis_password
+# 
+# ============================================
+# URLs dos serviços:
+# ============================================
+# 
+# PostgreSQL:       localhost:5432
+# Redis:            localhost:6379
+# MailHog UI:       http://localhost:8025
+# MinIO Console:    http://localhost:9001
+# pgAdmin:          http://localhost:5050
+# Elasticsearch:    http://localhost:9200 (se habilitado)
+# 
+# ============================================
+# Configurações para o .env:
+# ============================================
+# 
+# DATABASE_URL="postgresql://marketplace:dev_password_change_me@localhost:5432/marketplace?schema=public"
+# REDIS_HOST="localhost"
+# REDIS_PORT="6379"
+# REDIS_PASSWORD="dev_redis_password"
+# 
+# SMTP_HOST="localhost"
+# SMTP_PORT="1025"
+# 
+# AWS_ENDPOINT="http://localhost:9000"
+# AWS_ACCESS_KEY_ID="minioadmin"
+# AWS_SECRET_ACCESS_KEY="minioadmin"
+# AWS_S3_BUCKET="marketplace-uploads"
+# 
