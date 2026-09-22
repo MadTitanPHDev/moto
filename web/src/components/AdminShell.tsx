@@ -13,9 +13,9 @@ import { company } from "@/lib/data";
 import { cn } from "@/lib/cn";
 
 const links = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin", label: "Painel", icon: LayoutDashboard },
   { href: "/admin/motos", label: "Motos", icon: Bike },
-  { href: "/admin/leads", label: "Leads", icon: Users },
+  { href: "/admin/leads", label: "Interessados", icon: Users },
   { href: "/admin/configuracoes", label: "Configurações", icon: Settings },
 ];
 
@@ -26,8 +26,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen bg-gray-50">
       <aside className="hidden w-60 flex-col border-r border-gray-200 bg-white md:flex">
         <div className="border-b border-gray-100 px-4 py-5">
-          <p className="font-bold text-gray-900">{company.name}</p>
-          <p className="text-xs text-gray-500">Painel da loja</p>
+          <p className="text-xl font-extrabold tracking-tight">apexmotos</p>
+          <p className="text-xs text-gray-500">Área da loja · {company.city}</p>
         </div>
         <nav className="flex flex-1 flex-col gap-1 p-3 text-sm">
           {links.map((link) => {
@@ -43,7 +43,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 className={cn(
                   "flex items-center gap-2 rounded-lg px-3 py-2 font-medium",
                   active
-                    ? "bg-primary-50 text-primary-700"
+                    ? "rounded-full bg-ink text-white"
                     : "text-gray-600 hover:bg-gray-50"
                 )}
               >

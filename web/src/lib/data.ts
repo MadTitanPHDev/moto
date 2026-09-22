@@ -53,12 +53,12 @@ export type BlogPost = {
 export const company = {
   name: "Apex Motos",
   tagline: "Qualidade, confiança e tradição desde 2010",
-  city: "Campinas",
+  city: "Presidente Prudente",
   state: "SP",
-  address: "Av. Norte-Sul, 1200 — Cambuí, Campinas/SP",
-  phone: "(19) 3232-4400",
-  whatsapp: "5519999887766",
-  whatsappDisplay: "(19) 99988-7766",
+  address: "Av. Coronel José Soares Marcondes, 2100 — Centro, Presidente Prudente/SP",
+  phone: "(18) 3222-4400",
+  whatsapp: "5518999887766",
+  whatsappDisplay: "(18) 99988-7766",
   email: "contato@apexmotos.com.br",
   instagram: "@apexmotos",
   hours: "Seg a Sex 9h–18h · Sáb 9h–13h",
@@ -86,7 +86,7 @@ export const bikes: Bike[] = [
     price: 35900,
     negotiable: true,
     acceptTrade: true,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Moto em estado de zero. Todas as revisões em dia na concessionária, único dono, manual e chave reserva. Aceito seu usado na troca e financio.",
@@ -120,7 +120,7 @@ export const bikes: Bike[] = [
     price: 42500,
     negotiable: true,
     acceptTrade: true,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Naked esportiva com pouquíssimo uso. Pneus novos, isenta de detalhes. Ideal para quem quer torque e agilidade no dia a dia.",
@@ -152,7 +152,7 @@ export const bikes: Bike[] = [
     price: 38000,
     negotiable: false,
     acceptTrade: true,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Naked compacta, excelente para cidade. Freios ABS, revisões em dia e documentação 100% regular.",
@@ -184,7 +184,7 @@ export const bikes: Bike[] = [
     price: 29900,
     negotiable: true,
     acceptTrade: true,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Streetfighter com motor 4 cilindros. Moto revisada, pneus com 80% de vida e pronta para viajar.",
@@ -216,7 +216,7 @@ export const bikes: Bike[] = [
     price: 18900,
     negotiable: false,
     acceptTrade: false,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Scooter seminova, praticamente zero. Baixo consumo, baú incluso e ideal para o dia a dia na cidade.",
@@ -248,7 +248,7 @@ export const bikes: Bike[] = [
     price: 22900,
     negotiable: true,
     acceptTrade: true,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Trail versátil para cidade e estrada de terra. Relação nova e amortecedor em ótimo estado.",
@@ -280,7 +280,7 @@ export const bikes: Bike[] = [
     price: 27900,
     negotiable: true,
     acceptTrade: true,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Esportiva leve, perfeita para quem está saindo da cilindrada baixa. Carenagem original sem arranhões.",
@@ -312,7 +312,7 @@ export const bikes: Bike[] = [
     price: 12900,
     negotiable: true,
     acceptTrade: true,
-    city: "Campinas",
+    city: "Presidente Prudente",
     state: "SP",
     description:
       "Trabalho e economia. Moto honestamente usada, partida elétrica e documentação ok. Ótima para o primeiro veículo.",
@@ -335,7 +335,7 @@ export const leads: Lead[] = [
   {
     id: "L-1042",
     name: "João Mendes",
-    phone: "(19) 98811-2200",
+    phone: "(18) 98811-2200",
     email: "joao.mendes@email.com",
     bikeId: "cb500x-2022",
     message: "Aceita CG 160 na troca? Consigo ir sábado.",
@@ -345,7 +345,7 @@ export const leads: Lead[] = [
   {
     id: "L-1041",
     name: "Ana Paula",
-    phone: "(19) 99712-3344",
+    phone: "(18) 99712-3344",
     email: "ana.paula@email.com",
     bikeId: "pcx-2024",
     message: "A PCX ainda está disponível? Quero financiar.",
@@ -355,7 +355,7 @@ export const leads: Lead[] = [
   {
     id: "L-1038",
     name: "Ricardo Alves",
-    phone: "(11) 97655-0911",
+    phone: "(18) 97655-0911",
     email: "ricardo.alves@email.com",
     bikeId: "mt07-2023",
     message: "Pode enviar mais fotos da lateral e do painel?",
@@ -365,7 +365,7 @@ export const leads: Lead[] = [
   {
     id: "L-1033",
     name: "Camila Souza",
-    phone: "(19) 98100-4422",
+    phone: "(18) 98100-4422",
     email: "camila.souza@email.com",
     bikeId: "gsx-s750-2020",
     message: "Fechei a Suzuki. Obrigada pelo atendimento!",
@@ -375,7 +375,7 @@ export const leads: Lead[] = [
   {
     id: "L-1029",
     name: "Pedro Lima",
-    phone: "(19) 99222-1100",
+    phone: "(18) 99222-1100",
     email: "pedro.lima@email.com",
     bikeId: "z400-2021",
     message: "Comprei em outra loja, valeu.",

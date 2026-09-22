@@ -11,10 +11,10 @@ export default function AdminDashboardPage() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <h1 className="text-2xl font-bold">Painel</h1>
         <Link
           href="/admin/motos/nova"
-          className="rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white"
+          className="rounded-full bg-ink px-4 py-2 text-sm font-extrabold uppercase tracking-wider text-white"
         >
           + Adicionar moto
         </Link>
@@ -23,7 +23,7 @@ export default function AdminDashboardPage() {
         {[
           ["Motos ativas", String(active)],
           ["Visualizações", formatNumber(views)],
-          ["Leads", String(leads.length)],
+          ["Interessados", String(leads.length)],
           ["Vendas", String(sold)],
           ["Taxa", "5,2%"],
         ].map(([label, value]) => (
@@ -35,7 +35,7 @@ export default function AdminDashboardPage() {
       </div>
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <section className="rounded-2xl bg-white p-5">
-          <h2 className="font-semibold">Leads por período</h2>
+          <h2 className="font-semibold">Interessados por período</h2>
           <div className="mt-6 flex h-40 items-end gap-3">
             {[40, 55, 35, 70, 48, 90, 62].map((h, i) => (
               <div key={i} className="flex-1 rounded-t bg-primary-500" style={{ height: `${h}%` }} />
@@ -51,7 +51,7 @@ export default function AdminDashboardPage() {
                 <span>
                   {bike.brand} {bike.model}
                 </span>
-                <span className="text-gray-500">{bike.views} views</span>
+                <span className="text-gray-500">{bike.views} visualizações</span>
               </li>
             ))}
           </ul>

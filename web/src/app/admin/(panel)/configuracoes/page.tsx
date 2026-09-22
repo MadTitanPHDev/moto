@@ -12,7 +12,7 @@ export default function ConfiguracoesPage() {
         <input className="h-11 w-full rounded-lg border border-gray-300 px-3" defaultValue={company.whatsappDisplay} />
         <input className="h-11 w-full rounded-lg border border-gray-300 px-3" defaultValue={company.instagram} />
         <div className="flex h-28 items-center justify-center rounded-xl border-2 border-dashed border-gray-300 text-sm text-gray-500">
-          Upload do logotipo
+          Enviar logotipo
         </div>
         <h2 className="pt-4 font-semibold">Acesso</h2>
         <input className="h-11 w-full rounded-lg border border-gray-300 px-3" type="password" placeholder="Nova senha" />

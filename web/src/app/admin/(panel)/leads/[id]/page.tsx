@@ -11,7 +11,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   return (
     <div className="mx-auto max-w-2xl">
       <Link href="/admin/leads" className="text-sm text-primary-600">
-        ← Leads
+        ← Interessados
       </Link>
       <h1 className="mt-2 text-2xl font-bold">{lead.name}</h1>
       <p className="text-gray-500">{leadStatusLabel[lead.status]}</p>

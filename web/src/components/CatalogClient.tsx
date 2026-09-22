@@ -14,7 +14,7 @@ export function CatalogClient() {
 
   const filtered = useMemo(() => {
     return bikes.filter((bike) => {
-      if (bike.status === "sold") return false;
+      if (bike.status === "sold" || bike.status === "paused") return false;
       if (marca && bike.brand !== marca) return false;
       if (ano && bike.year < ano) return false;
       if (preco && bike.price > preco) return false;
@@ -27,60 +27,42 @@ export function CatalogClient() {
   }, [marca, ano, preco, q]);
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 lg:grid-cols-[240px_1fr]">
-      <form action="/catalogo" className="h-fit space-y-4 rounded-2xl border border-gray-100 bg-white p-4">
-        <h2 className="font-semibold">Filtros</h2>
-        <label className="block text-sm">
-          Busca
-          <input
-            name="q"
-            defaultValue={q}
-            className="mt-1 h-10 w-full rounded-lg border border-gray-300 px-3"
-            placeholder="Marca ou modelo"
-          />
-        </label>
-        <label className="block text-sm">
-          Marca
-          <select name="marca" defaultValue={marca} className="mt-1 h-10 w-full rounded-lg border border-gray-300 px-3">
-            <option value="">Todas</option>
-            {brands.map((brand) => (
-              <option key={brand}>{brand}</option>
-            ))}
-          </select>
-        </label>
-        <label className="block text-sm">
-          Ano mínimo
-          <select name="ano" defaultValue={ano || ""} className="mt-1 h-10 w-full rounded-lg border border-gray-300 px-3">
-            <option value="">Qualquer</option>
-            <option value="2024">2024+</option>
-            <option value="2022">2022+</option>
-            <option value="2020">2020+</option>
-          </select>
-        </label>
-        <label className="block text-sm">
-          Preço máximo
-          <select name="preco" defaultValue={preco || ""} className="mt-1 h-10 w-full rounded-lg border border-gray-300 px-3">
-            <option value="">Qualquer</option>
-            <option value="20000">Até R$ 20 mil</option>
-            <option value="35000">Até R$ 35 mil</option>
-            <option value="50000">Até R$ 50 mil</option>
-          </select>
-        </label>
-        <button className="h-10 w-full rounded-lg bg-primary-600 text-sm font-semibold text-white">
+    <div className="mx-auto max-w-6xl px-4 py-10">
+      <p className="text-xs text-gray-500">Início / Catálogo / Todas</p>
+      <form action="/catalogo" className="mt-6 flex flex-wrap items-end gap-3">
+        <input
+          name="q"
+          defaultValue={q}
+          className="h-11 min-w-[180px] flex-1 rounded-full border border-gray-300 px-4 text-sm"
+          placeholder="Marca ou modelo"
+        />
+        <select name="marca" defaultValue={marca} className="h-11 rounded-full border border-gray-300 px-4 text-sm">
+          <option value="">Todas as marcas</option>
+          {brands.map((brand) => (
+            <option key={brand}>{brand}</option>
+          ))}
+        </select>
+        <select name="ano" defaultValue={ano || ""} className="h-11 rounded-full border border-gray-300 px-4 text-sm">
+          <option value="">Qualquer ano</option>
+          <option value="2024">2024+</option>
+          <option value="2022">2022+</option>
+          <option value="2020">2020+</option>
+        </select>
+        <select name="preco" defaultValue={preco || ""} className="h-11 rounded-full border border-gray-300 px-4 text-sm">
+          <option value="">Qualquer preço</option>
+          <option value="20000">Até R$ 20 mil</option>
+          <option value="35000">Até R$ 35 mil</option>
+          <option value="50000">Até R$ 50 mil</option>
+        </select>
+        <button className="h-11 rounded-full bg-ink px-6 text-xs font-extrabold uppercase tracking-wider text-white">
           Aplicar
         </button>
       </form>
 
-      <div>
-        <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">{filtered.length} motos encontradas</h1>
-          <span className="text-sm text-gray-500">Ordenar: mais recentes</span>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2">
-          {filtered.map((bike) => (
-            <BikeCard key={bike.id} bike={bike} />
-          ))}
-        </div>
+      <div className="mt-10 grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        {filtered.map((bike) => (
+          <BikeCard key={bike.id} bike={bike} />
+        ))}
       </div>
     </div>
   );

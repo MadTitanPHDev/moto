@@ -12,7 +12,7 @@ export default function NovaMotoPage() {
   return (
     <div className="mx-auto max-w-2xl">
       <h1 className="text-2xl font-bold">Adicionar moto</h1>
-      <p className="text-sm text-gray-500">Wizard guiado — no produto final grava no estoque em minutos.</p>
+      <p className="text-sm text-gray-500">Passo a passo guiado — no produto final grava no estoque em minutos.</p>
       <div className="mt-6 flex gap-2 text-sm">
         {steps.map((label, index) => (
           <span

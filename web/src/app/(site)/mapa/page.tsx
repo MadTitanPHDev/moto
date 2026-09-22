@@ -4,7 +4,7 @@ const groups = [
   {
     title: "Site da loja",
     items: [
-      ["Home", "/"],
+      ["Início", "/"],
       ["Catálogo com filtros", "/catalogo"],
       ["Detalhe da moto", "/motos/honda-cb-500x-2022"],
       ["Quem somos", "/sobre"],
@@ -16,13 +16,13 @@ const groups = [
   {
     title: "Painel administrativo",
     items: [
-      ["Login", "/admin/login"],
-      ["Dashboard", "/admin"],
+      ["Entrar", "/admin/login"],
+      ["Painel", "/admin"],
       ["Gestão de motos", "/admin/motos"],
-      ["Nova moto (wizard)", "/admin/motos/nova"],
+      ["Nova moto (passo a passo)", "/admin/motos/nova"],
       ["Editar moto", "/admin/motos/cb500x-2022/editar"],
-      ["Leads", "/admin/leads"],
-      ["Detalhe do lead", "/admin/leads/L-1041"],
+      ["Interessados", "/admin/leads"],
+      ["Detalhe do interessado", "/admin/leads/L-1041"],
       ["Configurações", "/admin/configuracoes"],
     ],
   },
@@ -31,7 +31,7 @@ const groups = [
 export default function MapaPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
-      <h1 className="text-4xl font-bold">Mapa do protótipo</h1>
+      <h1 className="text-5xl font-extrabold tracking-tight">Mapa do protótipo</h1>
       <p className="mt-3 text-gray-600">
         Todas as páginas previstas no escopo da permuta (site + painel), em navegação visual. Sem
         backend ainda — o objetivo é mostrar o produto ao cliente.

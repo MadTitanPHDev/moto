@@ -4,27 +4,25 @@ import { company } from "@/lib/data";
 
 export default function AdminLoginPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <DemoBanner />
-      <div className="mx-auto flex max-w-md flex-col px-4 py-16">
-        <div className="rounded-2xl bg-white p-8 shadow-sm">
-          <p className="text-sm text-gray-500">Área da loja</p>
-          <h1 className="mt-1 text-2xl font-bold">{company.name}</h1>
-          <p className="mt-2 text-sm text-gray-500">Login de demonstração — qualquer dado entra no painel.</p>
-          <form className="mt-6 space-y-3">
-            <input className="h-11 w-full rounded-lg border border-gray-300 px-3" defaultValue="admin@apexmotos.com.br" readOnly />
-            <input className="h-11 w-full rounded-lg border border-gray-300 px-3" type="password" defaultValue="demo" readOnly />
-            <Link
-              href="/admin"
-              className="flex h-11 w-full items-center justify-center rounded-lg bg-primary-600 font-semibold text-white"
-            >
-              Entrar
-            </Link>
-          </form>
-          <Link href="/" className="mt-4 block text-center text-sm text-primary-600">
-            Voltar ao site
+      <div className="mx-auto flex max-w-md flex-col px-4 py-20">
+        <p className="text-3xl font-extrabold tracking-tight">apexmotos</p>
+        <p className="mt-2 text-sm text-gray-500">Área da loja · {company.name}</p>
+        <p className="mt-2 text-sm text-gray-500">Acesso de demonstração — qualquer dado entra no painel.</p>
+        <form className="mt-8 space-y-3">
+          <input className="h-12 w-full rounded-full border border-gray-300 px-5" defaultValue="admin@apexmotos.com.br" readOnly />
+          <input className="h-12 w-full rounded-full border border-gray-300 px-5" type="password" defaultValue="demo" readOnly />
+          <Link
+            href="/admin"
+            className="flex h-12 w-full items-center justify-center rounded-full bg-ink font-extrabold uppercase tracking-[0.14em] text-white"
+          >
+            Entrar
           </Link>
-        </div>
+        </form>
+        <Link href="/" className="mt-6 block text-center text-sm underline underline-offset-4">
+          Voltar ao site
+        </Link>
       </div>
     </div>
   );

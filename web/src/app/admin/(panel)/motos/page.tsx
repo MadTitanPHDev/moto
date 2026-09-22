@@ -26,13 +26,15 @@ export default function AdminBikesPage() {
                 {bike.brand} {bike.model} {bike.year} · {formatCurrency(bike.price)}
               </p>
               <p className="text-sm text-gray-500">
-                👁️ {bike.views} · ♥️ {bike.favorites} · 💬 {bike.leads} leads · {bikeStatusLabel[bike.status]}
+                👁️ {bike.views} · ♥️ {bike.favorites} · 💬 {bike.leads} interessados · {bikeStatusLabel[bike.status]}
               </p>
             </div>
             <div className="flex flex-wrap gap-2 text-sm">
-              <Link href={`/motos/${bike.slug}`} className="rounded-lg border border-gray-300 px-3 py-1">
-                Ver
-              </Link>
+              {bike.status === "active" && (
+                <Link href={`/motos/${bike.slug}`} className="rounded-lg border border-gray-300 px-3 py-1">
+                  Ver
+                </Link>
+              )}
               <Link href={`/admin/motos/${bike.id}/editar`} className="rounded-lg border border-gray-300 px-3 py-1">
                 Editar
               </Link>

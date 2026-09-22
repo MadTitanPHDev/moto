@@ -5,14 +5,14 @@ export default function LeadsPage() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Leads</h1>
+        <h1 className="text-2xl font-bold">Interessados</h1>
         <button className="rounded-lg border border-gray-300 px-4 py-2 text-sm">Exportar Excel</button>
       </div>
       <div className="overflow-x-auto rounded-2xl bg-white">
         <table className="w-full min-w-[720px] text-left text-sm">
           <thead className="border-b border-gray-100 text-gray-500">
             <tr>
-              <th className="px-4 py-3">Lead</th>
+              <th className="px-4 py-3">Interessado</th>
               <th className="px-4 py-3">Moto</th>
               <th className="px-4 py-3">Contato</th>
               <th className="px-4 py-3">Status</th>
