@@ -17,7 +17,7 @@ const body = Manrope({
 
 export const metadata: Metadata = {
   title: "Documentação | Apex Motos",
-  description: "Visualização em páginas da documentação de permuta, produto e implementação.",
+  description: "Leitura do planejamento de marketplace e do CRM da revenda de motos.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

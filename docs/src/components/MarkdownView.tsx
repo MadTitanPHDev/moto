@@ -5,7 +5,7 @@ import { Children, isValidElement, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import GithubSlugger from "github-slugger";
-import { getDocumentByFile } from "@/lib/documents";
+import { getDocumentByFile, normalizeDocPath } from "@/lib/documents";
 import { stripMarkdown } from "@/lib/text";
 
 function textFromNode(node: ReactNode): string {
@@ -24,22 +24,26 @@ function headingId(slugger: GithubSlugger, children: ReactNode) {
   return slugger.slug(stripMarkdown(textFromNode(children)));
 }
 
-function resolveHref(href?: string) {
+function resolveHref(href: string | undefined, currentFile: string) {
   if (!href) return href;
-  if (href.startsWith("http://") || href.startsWith("https://") || href.startsWith("mailto:")) {
+  if (href.startsWith("http://") || href.startsWith("https://") || href.startsWith("mailto:") || href.startsWith("#")) {
     return href;
   }
 
-  const match = href.match(/^(?:\.\/|\.\.\/)?([^#/]+\.md)(#.*)?$/i);
-  if (match) {
-    const doc = getDocumentByFile(match[1]);
-    if (doc) return `/${doc.slug}${match[2] ?? ""}`;
-  }
+  const hashAt = href.indexOf("#");
+  const pathPart = hashAt >= 0 ? href.slice(0, hashAt) : href;
+  const hash = hashAt >= 0 ? href.slice(hashAt) : "";
+  if (!pathPart.toLowerCase().endsWith(".md")) return href;
+
+  const directory = currentFile.includes("/") ? currentFile.slice(0, currentFile.lastIndexOf("/")) : "";
+  const joined = directory ? `${directory}/${pathPart}` : pathPart;
+  const doc = getDocumentByFile(normalizeDocPath(joined));
+  if (doc) return `/${doc.slug}${hash}`;
 
   return href;
 }
 
-export function MarkdownView({ content }: { content: string }) {
+export function MarkdownView({ content, file }: { content: string; file: string }) {
   const slugger = new GithubSlugger();
 
   return (
@@ -58,7 +62,7 @@ export function MarkdownView({ content }: { content: string }) {
           },
           h4: ({ children }) => <h4>{children}</h4>,
           a: ({ href, children }) => {
-            const next = resolveHref(href);
+            const next = resolveHref(href, file);
             const external = Boolean(next?.startsWith("http"));
             if (!next) return <span>{children}</span>;
             if (next.startsWith("/")) {

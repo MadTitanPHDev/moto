@@ -14,15 +14,19 @@ const groups = [
     ],
   },
   {
-    title: "Painel administrativo",
+    title: "CRM da loja",
     items: [
       ["Entrar", "/admin/login"],
       ["Painel", "/admin"],
+      ["Funil", "/admin/funil"],
+      ["Interesses", "/admin/leads"],
+      ["Ficha do interesse", "/admin/leads/L-1042"],
+      ["Pessoas", "/admin/pessoas"],
+      ["Ficha da pessoa", "/admin/pessoas/joao"],
+      ["Tarefas", "/admin/tarefas"],
       ["Gestão de motos", "/admin/motos"],
       ["Nova moto (passo a passo)", "/admin/motos/nova"],
       ["Editar moto", "/admin/motos/cb500x-2022/editar"],
-      ["Interessados", "/admin/leads"],
-      ["Detalhe do interessado", "/admin/leads/L-1041"],
       ["Configurações", "/admin/configuracoes"],
     ],
   },
@@ -33,8 +37,8 @@ export default function MapaPage() {
     <div className="mx-auto max-w-4xl px-4 py-12">
       <h1 className="text-5xl font-extrabold tracking-tight">Mapa do protótipo</h1>
       <p className="mt-3 text-gray-600">
-        Todas as páginas previstas no escopo da permuta (site + painel), em navegação visual. Sem
-        backend ainda — o objetivo é mostrar o produto ao cliente.
+        Site da loja para o cliente e CRM para a equipe. A navegação é visual, com dados de demonstração:
+        o funil, as tarefas e o histórico já aparecem nas fichas.
       </p>
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         {groups.map((group) => (

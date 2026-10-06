@@ -4,7 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Bike,
+  Columns3,
+  Contact,
   LayoutDashboard,
+  ListTodo,
   LogOut,
   Settings,
   Users,
@@ -14,8 +17,11 @@ import { cn } from "@/lib/cn";
 
 const links = [
   { href: "/admin", label: "Painel", icon: LayoutDashboard },
+  { href: "/admin/funil", label: "Funil", icon: Columns3 },
+  { href: "/admin/leads", label: "Interesses", icon: Users },
+  { href: "/admin/pessoas", label: "Pessoas", icon: Contact },
+  { href: "/admin/tarefas", label: "Tarefas", icon: ListTodo },
   { href: "/admin/motos", label: "Motos", icon: Bike },
-  { href: "/admin/leads", label: "Interessados", icon: Users },
   { href: "/admin/configuracoes", label: "Configurações", icon: Settings },
 ];
 
@@ -27,7 +33,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <aside className="hidden w-60 flex-col border-r border-gray-200 bg-white md:flex">
         <div className="border-b border-gray-100 px-4 py-5">
           <p className="text-xl font-extrabold tracking-tight">apexmotos</p>
-          <p className="text-xs text-gray-500">Área da loja · {company.city}</p>
+          <p className="text-xs text-gray-500">CRM da loja · {company.city}</p>
         </div>
         <nav className="flex flex-1 flex-col gap-1 p-3 text-sm">
           {links.map((link) => {

@@ -31,8 +31,8 @@ export function InterestModal({
         </p>
         {sent ? (
           <p className="rounded-full bg-cream px-5 py-4 text-sm">
-            Interesse registrado neste protótipo. No site final, o dado entra no painel e o vendedor
-            recebe WhatsApp + e-mail.
+            Interesse registrado neste protótipo. No CRM, isso vira uma pessoa, um interesse em Novo e a
+            tarefa “Fazer o primeiro contato”.
           </p>
         ) : (
           <form

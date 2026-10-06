@@ -11,7 +11,7 @@ const body = Nunito({
 export const metadata: Metadata = {
   title: "Apex Motos | Presidente Prudente",
   description:
-    "Protótipo visual de site e painel para revenda de motos em Presidente Prudente.",
+    "Protótipo visual do site da revenda e do CRM da equipe, em Presidente Prudente.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

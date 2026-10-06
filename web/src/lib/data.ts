@@ -31,15 +31,51 @@ export type Bike = {
   featured: boolean;
 };
 
-export type Lead = {
+export type PersonSource = "site" | "whatsapp" | "loja" | "indicacao";
+export type ActivityType = "call" | "whatsapp" | "visit" | "note" | "system";
+export type LostReason = "preco" | "outro_lugar" | "sem_retorno" | "desistiu";
+
+export type Staff = {
+  id: string;
+  name: string;
+  role: "admin" | "vendedor";
+};
+
+export type Person = {
   id: string;
   name: string;
   phone: string;
   email: string;
+  source: PersonSource;
+};
+
+export type Lead = {
+  id: string;
+  personId: string;
   bikeId: string;
   message: string;
   status: LeadStatus;
+  ownerId: string;
+  lostReason?: LostReason;
   createdAt: string;
+};
+
+export type Activity = {
+  id: string;
+  leadId: string;
+  type: ActivityType;
+  body: string;
+  at: string;
+  authorId?: string;
+};
+
+export type CrmTask = {
+  id: string;
+  leadId: string;
+  title: string;
+  dueAt: string;
+  done: boolean;
+  assigneeId: string;
 };
 
 export type BlogPost = {
@@ -331,56 +367,195 @@ export const bikes: Bike[] = [
   },
 ];
 
-export const leads: Lead[] = [
+export const staff: Staff[] = [
+  { id: "carlos", name: "Carlos Lima", role: "admin" },
+  { id: "marina", name: "Marina Costa", role: "vendedor" },
+];
+
+export const people: Person[] = [
   {
-    id: "L-1042",
+    id: "joao",
     name: "João Mendes",
     phone: "(18) 98811-2200",
     email: "joao.mendes@email.com",
+    source: "site",
+  },
+  {
+    id: "ana",
+    name: "Ana Paula",
+    phone: "(18) 99712-3344",
+    email: "ana.paula@email.com",
+    source: "site",
+  },
+  {
+    id: "ricardo",
+    name: "Ricardo Alves",
+    phone: "(18) 97655-0911",
+    email: "ricardo.alves@email.com",
+    source: "whatsapp",
+  },
+  {
+    id: "camila",
+    name: "Camila Souza",
+    phone: "(18) 98100-4422",
+    email: "camila.souza@email.com",
+    source: "loja",
+  },
+  {
+    id: "pedro",
+    name: "Pedro Lima",
+    phone: "(18) 99222-1100",
+    email: "pedro.lima@email.com",
+    source: "indicacao",
+  },
+];
+
+export const leads: Lead[] = [
+  {
+    id: "L-1042",
+    personId: "joao",
     bikeId: "cb500x-2022",
     message: "Aceita CG 160 na troca? Consigo ir sábado.",
     status: "negociacao",
+    ownerId: "marina",
     createdAt: "2026-09-18T14:20:00",
   },
   {
     id: "L-1041",
-    name: "Ana Paula",
-    phone: "(18) 99712-3344",
-    email: "ana.paula@email.com",
+    personId: "ana",
     bikeId: "pcx-2024",
     message: "A PCX ainda está disponível? Quero financiar.",
     status: "novo",
+    ownerId: "carlos",
     createdAt: "2026-09-19T09:05:00",
   },
   {
     id: "L-1038",
-    name: "Ricardo Alves",
-    phone: "(18) 97655-0911",
-    email: "ricardo.alves@email.com",
+    personId: "ricardo",
     bikeId: "mt07-2023",
     message: "Pode enviar mais fotos da lateral e do painel?",
     status: "contactado",
+    ownerId: "marina",
     createdAt: "2026-09-17T11:40:00",
   },
   {
     id: "L-1033",
-    name: "Camila Souza",
-    phone: "(18) 98100-4422",
-    email: "camila.souza@email.com",
-    bikeId: "gsx-s750-2020",
-    message: "Fechei a Suzuki. Obrigada pelo atendimento!",
+    personId: "camila",
+    bikeId: "cg160-2021",
+    message: "Fechei a CG 160. Obrigada pelo atendimento!",
     status: "fechado",
+    ownerId: "carlos",
     createdAt: "2026-09-12T16:10:00",
   },
   {
     id: "L-1029",
-    name: "Pedro Lima",
-    phone: "(18) 99222-1100",
-    email: "pedro.lima@email.com",
+    personId: "pedro",
     bikeId: "z400-2021",
     message: "Comprei em outra loja, valeu.",
     status: "perdido",
+    ownerId: "marina",
+    lostReason: "outro_lugar",
     createdAt: "2026-09-10T10:00:00",
+  },
+];
+
+export const activities: Activity[] = [
+  {
+    id: "a1",
+    leadId: "L-1041",
+    type: "system",
+    body: "Interesse recebido pelo site na Honda PCX.",
+    at: "2026-09-19T09:05:00",
+  },
+  {
+    id: "a2",
+    leadId: "L-1042",
+    type: "system",
+    body: "Interesse recebido pelo site na Honda CB 500X.",
+    at: "2026-09-18T14:20:00",
+  },
+  {
+    id: "a3",
+    leadId: "L-1042",
+    type: "whatsapp",
+    body: "Marina respondeu: aceitamos a CG na avaliação. João confirmou visita no sábado.",
+    at: "2026-09-18T16:40:00",
+    authorId: "marina",
+  },
+  {
+    id: "a4",
+    leadId: "L-1042",
+    type: "system",
+    body: "Estágio: Novo → Em negociação.",
+    at: "2026-09-18T16:41:00",
+    authorId: "marina",
+  },
+  {
+    id: "a5",
+    leadId: "L-1038",
+    type: "call",
+    body: "Ligação de 4 minutos. Ricardo pediu fotos da lateral direita e do painel.",
+    at: "2026-09-17T15:10:00",
+    authorId: "marina",
+  },
+  {
+    id: "a6",
+    leadId: "L-1033",
+    type: "visit",
+    body: "Camila veio à loja, fez o test ride e fechou a CG 160.",
+    at: "2026-09-14T11:00:00",
+    authorId: "carlos",
+  },
+  {
+    id: "a7",
+    leadId: "L-1033",
+    type: "system",
+    body: "Interesse fechado. Moto marcada como vendida e removida do catálogo.",
+    at: "2026-09-14T11:20:00",
+    authorId: "carlos",
+  },
+  {
+    id: "a8",
+    leadId: "L-1029",
+    type: "note",
+    body: "Pedro avisou que comprou a mesma categoria em outra loja.",
+    at: "2026-09-11T09:30:00",
+    authorId: "marina",
+  },
+];
+
+export const tasks: CrmTask[] = [
+  {
+    id: "t1",
+    leadId: "L-1041",
+    title: "Fazer o primeiro contato",
+    dueAt: "2026-09-19T18:00:00",
+    done: false,
+    assigneeId: "carlos",
+  },
+  {
+    id: "t2",
+    leadId: "L-1042",
+    title: "Receber o João no sábado",
+    dueAt: "2026-10-06T18:00:00",
+    done: false,
+    assigneeId: "marina",
+  },
+  {
+    id: "t3",
+    leadId: "L-1038",
+    title: "Enviar fotos da MT-07",
+    dueAt: "2026-10-08T12:00:00",
+    done: false,
+    assigneeId: "marina",
+  },
+  {
+    id: "t4",
+    leadId: "L-1033",
+    title: "Fazer o primeiro contato",
+    dueAt: "2026-09-12T18:00:00",
+    done: true,
+    assigneeId: "carlos",
   },
 ];
 
@@ -426,6 +601,28 @@ export function getLead(id: string) {
   return leads.find((lead) => lead.id === id);
 }
 
+export function getPerson(id: string) {
+  return people.find((person) => person.id === id);
+}
+
+export function getStaff(id: string) {
+  return staff.find((member) => member.id === id);
+}
+
+export function leadsForPerson(personId: string) {
+  return leads.filter((lead) => lead.personId === personId);
+}
+
+export function activitiesForLead(leadId: string) {
+  return activities
+    .filter((activity) => activity.leadId === leadId)
+    .sort((a, b) => b.at.localeCompare(a.at));
+}
+
+export function tasksForLead(leadId: string) {
+  return tasks.filter((task) => task.leadId === leadId);
+}
+
 export function getPost(slug: string) {
   return posts.find((post) => post.slug === slug);
 }
@@ -436,6 +633,30 @@ export const leadStatusLabel: Record<LeadStatus, string> = {
   negociacao: "Em negociação",
   fechado: "Fechado",
   perdido: "Perdido",
+};
+
+export const leadStages: LeadStatus[] = ["novo", "contactado", "negociacao", "fechado", "perdido"];
+
+export const sourceLabel: Record<PersonSource, string> = {
+  site: "Site",
+  whatsapp: "WhatsApp",
+  loja: "Loja",
+  indicacao: "Indicação",
+};
+
+export const activityLabel: Record<ActivityType, string> = {
+  call: "Ligação",
+  whatsapp: "WhatsApp",
+  visit: "Visita",
+  note: "Nota",
+  system: "Sistema",
+};
+
+export const lostReasonLabel: Record<LostReason, string> = {
+  preco: "Preço",
+  outro_lugar: "Comprou em outro lugar",
+  sem_retorno: "Sem retorno",
+  desistiu: "Desistiu",
 };
 
 export const bikeStatusLabel: Record<BikeStatus, string> = {

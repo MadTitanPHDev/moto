@@ -10,8 +10,8 @@ export function DemoBanner() {
           <Link className="hover:underline" href="/">
             Site
           </Link>
-          <Link className="hover:underline" href="/admin/login">
-            Painel
+          <Link className="hover:underline" href="/admin/funil">
+            CRM
           </Link>
           <Link className="hover:underline" href="/mapa">
             Telas

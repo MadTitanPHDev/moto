@@ -26,18 +26,19 @@ export default async function DocumentPage({ params }: { params: Promise<{ slug:
   const doc = loadDocument(slug);
   if (!doc) notFound();
 
-  const index = documents.findIndex((item) => item.slug === slug);
-  const previous = index > 0 ? documents[index - 1] : null;
-  const next = index < documents.length - 1 ? documents[index + 1] : null;
+  const siblings = documents.filter((item) => item.collection === doc.meta.collection);
+  const index = siblings.findIndex((item) => item.slug === slug);
+  const previous = index > 0 ? siblings[index - 1] : null;
+  const next = index < siblings.length - 1 ? siblings[index + 1] : null;
 
   return (
     <div className="flex gap-8 px-4 py-10 md:px-10">
       <article className="min-w-0 flex-1">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-600">
-          {doc.meta.group} · {doc.meta.reading}
+          {doc.meta.collection} · {doc.meta.group} · {doc.meta.reading}
         </p>
         <p className="mt-2 text-sm text-gray-500">{doc.meta.file}</p>
-        <MarkdownView content={doc.content} />
+        <MarkdownView content={doc.content} file={doc.meta.file} />
 
         <nav className="mt-14 grid gap-3 border-t border-primary-100 pt-6 sm:grid-cols-2">
           {previous ? (

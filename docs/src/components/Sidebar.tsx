@@ -4,30 +4,36 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import { documents, documentsByGroup } from "@/lib/documents";
+import { documents, documentsByCollection } from "@/lib/documents";
 import { cn } from "@/lib/cn";
 
 export function Sidebar() {
   const pathname = usePathname();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
-  const groups = documentsByGroup();
+  const libraries = documentsByCollection();
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return groups;
-    return groups
-      .map((group) => ({
-        ...group,
-        items: group.items.filter(
-          (doc) =>
-            doc.title.toLowerCase().includes(q) ||
-            doc.subtitle.toLowerCase().includes(q) ||
-            doc.file.toLowerCase().includes(q)
-        ),
+    if (!q) return libraries;
+    return libraries
+      .map((library) => ({
+        ...library,
+        groups: library.groups
+          .map((group) => ({
+            ...group,
+            items: group.items.filter(
+              (doc) =>
+                doc.title.toLowerCase().includes(q) ||
+                doc.subtitle.toLowerCase().includes(q) ||
+                doc.file.toLowerCase().includes(q) ||
+                library.collection.toLowerCase().includes(q)
+            ),
+          }))
+          .filter((group) => group.items.length > 0),
       }))
-      .filter((group) => group.items.length > 0);
-  }, [groups, query]);
+      .filter((library) => library.groups.length > 0);
+  }, [libraries, query]);
 
   return (
     <>
@@ -49,6 +55,7 @@ export function Sidebar() {
         <Link href="/" className="block px-2" onClick={() => setOpen(false)}>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-600">Apex Motos</p>
           <p className="mt-1 font-semibold text-gray-900">Documentação</p>
+          <p className="mt-1 text-xs text-gray-500">Marketplace e CRM</p>
         </Link>
 
         <label className="mt-5 flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm">
@@ -61,34 +68,41 @@ export function Sidebar() {
           />
         </label>
 
-        <nav className="mt-6 space-y-6">
-          {filtered.map((group) => (
-            <div key={group.group}>
-              <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">
-                {group.group}
-              </p>
-              <ul className="mt-2 space-y-1">
-                {group.items.map((doc) => {
-                  const href = `/${doc.slug}`;
-                  const active = pathname === href;
-                  return (
-                    <li key={doc.slug}>
-                      <Link
-                        href={href}
-                        onClick={() => setOpen(false)}
-                        className={cn(
-                          "block rounded-lg px-2 py-2 text-sm",
-                          active
-                            ? "bg-ink text-primary-500"
-                            : "text-gray-700 hover:bg-primary-50 hover:text-primary-700"
-                        )}
-                      >
-                        {doc.title}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+        <nav className="mt-6 space-y-8">
+          {filtered.map((library) => (
+            <div key={library.collection}>
+              <p className="px-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink">{library.collection}</p>
+              <div className="mt-3 space-y-5">
+                {library.groups.map((group) => (
+                  <div key={`${library.collection}-${group.group}`}>
+                    <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">
+                      {group.group}
+                    </p>
+                    <ul className="mt-2 space-y-1">
+                      {group.items.map((doc) => {
+                        const href = `/${doc.slug}`;
+                        const active = pathname === href;
+                        return (
+                          <li key={doc.slug}>
+                            <Link
+                              href={href}
+                              onClick={() => setOpen(false)}
+                              className={cn(
+                                "block rounded-lg px-2 py-2 text-sm",
+                                active
+                                  ? "bg-ink text-primary-500"
+                                  : "text-gray-700 hover:bg-primary-50 hover:text-primary-700"
+                              )}
+                            >
+                              {doc.title}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
           {filtered.length === 0 && (
@@ -97,7 +111,7 @@ export function Sidebar() {
         </nav>
 
         <p className="mt-8 px-2 text-xs text-gray-500">
-          {documents.length} arquivos · textos originais da raiz do repositório
+          {documents.length} arquivos · raiz do repositório e pasta crm
         </p>
       </aside>
     </>
