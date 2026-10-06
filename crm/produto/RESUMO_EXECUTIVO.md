@@ -88,7 +88,7 @@ Custo mensal de operação do sistema: hospedagem, banco e domínio, na faixa de
 | Site e CRM | Next.js + TypeScript + Tailwind | Um projeto, o protótipo `web/` já está nesse formato |
 | Dados | PostgreSQL + Prisma | Pessoas, interesses, tarefas e estoque no mesmo banco |
 | Fotos | S3 ou equivalente | Galeria da moto |
-| Acesso | Sessão no painel, papéis admin e vendedor | Visitante não tem login |
+| Acesso | Sessão só para administradores da loja | Visitante não tem login |
 | Aviso | E-mail (e link de WhatsApp na ficha) | Loja vê o interesse na hora |
 
 ---
@@ -110,7 +110,7 @@ Custo mensal de operação do sistema: hospedagem, banco e domínio, na faixa de
 - Fechado marca a moto como vendida
 - Perdido exige motivo
 - Funil e painel com dados reais
-- Dois papéis: administrador e vendedor
+- Login de administrador, com auditoria de estágio, venda e CSV
 - Exportação CSV
 
 ### Fase 3 — Depois da entrega (sob pedido)
@@ -165,7 +165,7 @@ Infraestrutura mensal da loja permanece baixa: um banco PostgreSQL, hospedagem d
 | Equipe não registra o WhatsApp no CRM | Funil fica vazio e o sistema perde utilidade | Tarefa obrigatória no primeiro contato e treinamento na entrega |
 | Fotos e textos atrasam | Site publica com estoque incompleto | Começar com 5 motos reais na semana 1 |
 | Escopo volta ao marketplace | Prazo estoura | Esta pasta é o escopo. Chat, OLX e vários vendedores ficam para outro contrato |
-| Dois vendedores alteram o mesmo interesse | Informação se perde | Responsável único e histórico com autor e data |
+| Dois administradores alteram o mesmo interesse | Informação se perde | Histórico com autor e data. Todos os administradores veem a loja inteira |
 
 ---
 

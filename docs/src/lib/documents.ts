@@ -193,6 +193,15 @@ export const documents: DocumentMeta[] = [
     collection: "CRM",
   },
   {
+    slug: "crm-seguranca",
+    file: "crm/tecnico/SEGURANCA.md",
+    title: "Segurança",
+    subtitle: "Login só da loja, sessão, dados pessoais e auditoria.",
+    reading: "15 min",
+    group: "Técnico",
+    collection: "CRM",
+  },
+  {
     slug: "crm-guia-implementacao",
     file: "crm/tecnico/GUIA_IMPLEMENTACAO.md",
     title: "Guia de implementação",

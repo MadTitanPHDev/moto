@@ -37,7 +37,7 @@ O protótipo em `web/` já tem as rotas públicas e o esqueleto do admin. A cons
 | `capture` | Formulários de interesse e contato, deduplicação por telefone, e-mail à loja |
 | `crm` | Pessoas, interesses, estágios, atividades, tarefas |
 | `inventory` | CRUD de motos, upload, status ativo / pausado / vendido |
-| `auth` | Login, sessão, papéis `admin` e `seller` |
+| `auth` | Login e sessão dos administradores da loja. Sem conta de visitante |
 | `settings` | Dados da loja usados no site e no WhatsApp |
 
 Não há serviço de chat, de avaliação nem de anúncio de terceiros.
@@ -89,7 +89,7 @@ A pasta `docs/` e os markdowns da raiz permanecem. Esta arquitetura não os alte
 2. Servidor valida, normaliza o telefone e aplica rate limit por IP.
 3. Busca pessoa pelo telefone. Cria se não existir.
 4. Cria interesse em `novo`, com a mensagem e o preço da moto como valor de referência.
-5. Cria tarefa “Fazer o primeiro contato”, vencendo no próximo dia útil, para o admin padrão ou para o vendedor da vez.
+5. Cria tarefa “Fazer o primeiro contato”, vencendo no próximo dia útil, atribuída a um administrador da loja.
 6. Envia e-mail à loja.
 7. Responde sucesso ao modal.
 
@@ -108,16 +108,16 @@ Consulta motos `active`, com os filtros da URL. A página da moto incrementa `vi
 
 ## 5. Autorização
 
-| Ação | Visitante | Vendedor | Admin |
-|---|---|---|---|
-| Ver catálogo | sim | sim | sim |
-| Enviar interesse | sim | sim | sim |
-| Ver interesses | | os seus, e os sem responsável | todos |
-| Mudar estágio, atividade, tarefa | | nos seus interesses | todos |
-| CRUD de motos e usuários | | | sim |
-| Dados da loja | | leitura | escrita |
+O padrão completo está em [SEGURANCA.md](./SEGURANCA.md).
 
-Toda função de escrita chama `requireUser()` e confere o papel. O layout do painel redireciona para `/admin/login` sem sessão.
+| Ação | Visitante | Administrador |
+|---|---|---|
+| Ver catálogo | sim | sim |
+| Enviar interesse | sim | sim |
+| Ver e alterar interesses, pessoas, tarefas e motos | não | sim |
+| Exportar CSV, dados da loja e outros administradores | não | sim |
+
+Toda função de escrita do painel chama `requireAdmin()`. Sem sessão, o layout de `/admin` redireciona para `/admin/login`. O responsável do interesse não limita a leitura.
 
 ---
 

@@ -50,7 +50,7 @@ Objetivo: uma reunião de 45 a 60 minutos com quem decide.
 - Enviar a proposta e o contrato adaptado de [CONTRATO_PERMUTA_MODELO.md](./CONTRATO_PERMUTA_MODELO.md).
 - Definir a moto: modelo, ano, km, estado, valor de referência.
 - Assinar com testemunhas. Revisão por advogado antes do uso real.
-- Combinar quem será o administrador e quem será o vendedor no CRM.
+- Combinar quem serão os administradores do CRM. O cliente do site não cria senha.
 
 ### Passo 5 — Construção (12 a 16 semanas)
 
@@ -87,7 +87,7 @@ Durante o trabalho: demonstração a cada duas semanas, usando um interesse real
 - Tarefas e lista do que está atrasado
 - Aviso por e-mail
 - Exportação CSV
-- Administrador e vendedor
+- Login só para administradores da loja
 
 ---
 
@@ -102,7 +102,7 @@ Custo mensal da loja: cerca de R$ 80 a R$ 200
 (hospedagem, banco, domínio)
 ```
 
-A faixa sobe em relação ao site simples da proposta da raiz porque entram ficha, tarefas, papéis e estoque ligado à venda. A moto continua sendo a forma de pagamento.
+A faixa sobe em relação ao site simples da proposta da raiz porque entram ficha, tarefas, login da loja e estoque ligado à venda. A moto continua sendo a forma de pagamento.
 
 Retorno ilustrativo, para a conversa: 2 vendas extras por mês com margem de R$ 5.250 cobrem a moto em poucos meses. A loja confirma com a margem dela.
 

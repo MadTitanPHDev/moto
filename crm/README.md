@@ -10,6 +10,7 @@ Os documentos originais do marketplace continuam na raiz do repositório. Esta p
 | `PLANO_PROJETO.md` | [produto/PLANO_PROJETO.md](./produto/PLANO_PROJETO.md) |
 | `UX_UI_DESIGN.md` | [produto/UX_UI_DESIGN.md](./produto/UX_UI_DESIGN.md) |
 | `ARQUITETURA_TECNICA.md` | [tecnico/ARQUITETURA_TECNICA.md](./tecnico/ARQUITETURA_TECNICA.md) |
+| padrão de segurança (caminho Next.js) | [tecnico/SEGURANCA.md](./tecnico/SEGURANCA.md) |
 | `GUIA_IMPLEMENTACAO.md` | [tecnico/GUIA_IMPLEMENTACAO.md](./tecnico/GUIA_IMPLEMENTACAO.md) |
 | `EXEMPLOS_CODIGO.md` | [tecnico/EXEMPLOS_CODIGO.md](./tecnico/EXEMPLOS_CODIGO.md) |
 | `START_HERE_PERMUTA.md` | [comercial/START_HERE_PERMUTA.md](./comercial/START_HERE_PERMUTA.md) |
@@ -33,7 +34,7 @@ O protótipo visual em `web/` (Apex Motos) continua como amostra de navegação.
 - Estágios: Novo, Contactado, Em negociação, Fechado, Perdido
 - Histórico: ligação, WhatsApp, visita, nota
 - Tarefas com data (“ligar amanhã”)
-- Papéis: administrador e vendedor
+- Login só para administradores da loja. O visitante não tem conta
 - Painel com funil, tarefas atrasadas e motos mais vistas
 
 ## O que fica de fora desta versão
@@ -44,7 +45,7 @@ Marketplace com vários vendedores, chat interno, reputação, planos pagos, fin
 
 - **Aplicação**: Next.js (site público e CRM no mesmo projeto)
 - **Banco**: PostgreSQL + Prisma
-- **Auth do painel**: sessão com papéis
+- **Auth do painel**: sessão dos administradores da loja. Regras em [tecnico/SEGURANCA.md](./tecnico/SEGURANCA.md). Forma de trabalho do agente em [../AGENTS.md](../AGENTS.md)
 - **Arquivos**: armazenamento de fotos (S3 ou equivalente)
 - **Avisos**: e-mail quando chega um interesse novo
 

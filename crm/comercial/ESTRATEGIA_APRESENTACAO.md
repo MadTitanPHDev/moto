@@ -45,7 +45,7 @@ Pergunte há quanto tempo a loja existe e quem responde o WhatsApp hoje. Anote o
 Perguntas:
 
 - Quando alguém pergunta o preço, a resposta está pronta ou é mensagem por mensagem?
-- Se o vendedor sai de folga, outro vê com quem ele estava negociando?
+- Se a pessoa que atende sai de folga, outro administrador vê com quem ela estava negociando?
 - A moto vendida sai do Instagram no mesmo dia?
 - Quantas pessoas pediram informação nesta semana e não tiveram segundo contato?
 
@@ -102,7 +102,7 @@ Se pedirem tempo:
 Separe o que é site e o que é operação. O site mostra o estoque. O CRM é a lista de quem falta ligar e o registro de que a moto já foi vendida. Pergunte quantas vendas por mês pagam a moto na margem deles. Use o cenário de 2 vendas extras só se a conta da loja for parecida.
 
 **“WhatsApp já resolve.”**  
-O WhatsApp continua. O CRM guarda o que o WhatsApp esquece quando muda o vendedor ou quando o sábado passa.
+O WhatsApp continua. O CRM guarda o que o WhatsApp esquece quando muda quem atende ou quando o sábado passa.
 
 **“Não vou usar.”**  
 O treinamento é em cima do gesto real: abriu o interesse, chamou no WhatsApp, concluiu a tarefa. Se a loja não topar registrar o contato, o projeto não se sustenta. Diga isso na reunião.

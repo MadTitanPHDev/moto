@@ -21,7 +21,6 @@ datasource db {
 
 enum UserRole {
   ADMIN
-  SELLER
 }
 
 enum BikeStatus {
@@ -81,7 +80,7 @@ model User {
   name         String
   email        String   @unique
   passwordHash String
-  role         UserRole @default(SELLER)
+  role         UserRole @default(ADMIN)
   active       Boolean  @default(true)
   createdAt    DateTime @default(now())
 

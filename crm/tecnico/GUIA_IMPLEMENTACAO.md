@@ -109,8 +109,8 @@ O visual dos componentes atuais (`BikeCard`, catálogo, header, footer) permanec
 - [ ] Funil com contagem real
 - [ ] Fechar interesse marca a moto `sold`
 - [ ] Perder exige motivo
-- [ ] Papel `seller`: vê e edita a própria carteira
-- [ ] Admin cadastra vendedor
+- [ ] Login de administrador. Visitante não entra no painel
+- [ ] Segundo administrador vê a mesma loja
 - [ ] Configurações da loja (telefone, WhatsApp, endereço) alimentam o site
 
 ### Semanas 9–10 — Conteúdo, teste, publicação
@@ -126,11 +126,12 @@ O visual dos componentes atuais (`BikeCard`, catálogo, header, footer) permanec
 
 1. Telefone salvo só com dígitos. Na tela, formatar de novo.
 2. Formulário público recusa mais de 5 envios por IP a cada 10 minutos.
-3. Vendedor não altera moto nem usuário.
+3. Só administrador autenticado altera moto, interesse, tarefa e usuário.
 4. `fechado` e a moto `sold` acontecem na mesma transação.
-5. E-mail falho fica em log; o interesse permanece.
+5. E-mail falho fica em log; o interesse permanece. O log não leva telefone nem e-mail.
 6. Texto de atividade e mensagem do visitante passam por escape na renderização.
 7. Senha com hash (argon2 ou bcrypt). O seed não usa a senha `demo` em produção.
+8. Cookie de sessão: HttpOnly, Secure, SameSite=Strict.
 
 ---
 
@@ -143,7 +144,7 @@ O visual dos componentes atuais (`BikeCard`, catálogo, header, footer) permanec
 | Estágio perdido sem motivo | Gravação recusada |
 | Estágio fechado | Moto some do catálogo |
 | Visitante abre `/admin` | Vai para o login |
-| Vendedor abre interesse de outro | 404 ou lista sem o registro |
+| Administrador abre qualquer interesse da loja | Vê a ficha |
 | Catálogo | Não lista pausada nem vendida |
 
 Ferramenta sugerida: testes de integração nas funções de `src/server/` com banco de teste, e um fluxo Playwright do modal até a lista do admin.
@@ -175,7 +176,8 @@ Ferramenta sugerida: testes de integração nas funções de `src/server/` com b
 - [ ] Funil, ficha, histórico e tarefas
 - [ ] Tarefas atrasadas no painel
 - [ ] CSV
-- [ ] Dois usuários com papéis diferentes
+- [ ] Dois administradores entram e veem a mesma loja
+- [ ] Visitante não abre o painel
 - [ ] Venda remove a moto do site
 
 ### Operação

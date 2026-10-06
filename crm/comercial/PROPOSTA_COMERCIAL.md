@@ -57,7 +57,7 @@ Quem visita não cria conta. Vê o estoque ativo e pede contato.
 - Painel com funil, atrasos e motos mais vistas
 - E-mail quando chega alguém pelo site
 - CSV
-- Dois acessos: administrador e vendedor
+- Dois ou mais administradores da loja, com o mesmo acesso. O visitante não tem conta
 
 ### 3. Estoque no mesmo painel
 
@@ -110,7 +110,7 @@ Outros efeitos: preço visível, estoque coerente com o que foi vendido, e uma l
 - Funil, histórico, tarefas atrasadas
 - E-mail de aviso
 - CSV
-- Admin e vendedor
+- Login de administrador, funil, histórico e tarefas
 
 ### Depois da publicação
 - 2 sessões de 1 hora: estoque; depois funil, tarefas e fechamento
@@ -128,7 +128,7 @@ Manutenção opcional após os 30 dias: R$ 250/mês (suporte, backup acompanhado
 | 1 | Kickoff, identidade, 5 motos, confirmação dos estágios |
 | 2–3 | Site com estoque real |
 | 4–5 | Interesse do site na ficha, e-mail, estágios gravados |
-| 6–8 | Histórico, tarefas, papéis, venda atualizando o site |
+| 6–8 | Histórico, tarefas, login de administrador, venda atualizando o site |
 | 9–10 | Restante do estoque, testes |
 | 11–12 | Domínio, HTTPS, backup, treinamento |
 | 13–16 | Uso da equipe e ajustes finos |
@@ -144,7 +144,7 @@ A transferência da moto ocorre após o aceite da loja, no fim desse ciclo.
 - Chat interno no lugar do WhatsApp
 - Aplicativo nas lojas de app
 - Várias lojas ou vendedores externos publicando anúncio
-- Mais de dois papéis de acesso
+- Mais de um perfil de acesso (vendedor com carteira própria)
 
 Qualquer um desses itens é orçamento à parte.
 
@@ -179,7 +179,7 @@ Não. Preço, foto, estágio e tarefa são do painel.
 Os 30 dias cobrem defeito. Depois, o plano mensal ou um chamado avulso.
 
 **Por que a referência é maior que a de um site simples?**  
-Porque a entrega inclui ficha, funil, tarefas, papéis e a venda ligada ao estoque. A lista estática de interessados do protótipo não é o produto final.
+Porque a entrega inclui ficha, funil, tarefas, login da loja e a venda ligada ao estoque. A lista estática de interessados do protótipo não é o produto final.
 
 **Dá para acrescentar financiamento depois?**  
 Sim, como fase seguinte, com escopo e valor próprios.

@@ -1,7 +1,7 @@
 # UX e UI
 ## Site da loja e CRM
 
-Documento de origem: `UX_UI_DESIGN.md` (raiz). O guia original desenha a jornada de comprador e vendedor num marketplace. Aqui o visitante só consulta a vitrine. Quem opera funil, tarefas e estoque é a equipe, no CRM.
+Documento de origem: `UX_UI_DESIGN.md` (raiz). O guia original desenha a jornada de comprador e vendedor num marketplace. Aqui o visitante só consulta a vitrine e não cria conta. Quem opera funil, tarefas e estoque é um administrador da loja, com login.
 
 O visual de referência é o protótipo Apex Motos em `web/`: tipografia forte, cantos bem arredondados, botões em pílula, fundo claro e a cor de destaque já usada no site.
 
@@ -11,7 +11,7 @@ O visual de referência é o protótipo Apex Motos em `web/`: tipografia forte, 
 
 1. **Clareza na vitrine.** Preço, ano, km e cidade aparecem no card. O visitante não precisa pedir o básico.
 2. **Um próximo passo.** Em cada tela do CRM há uma ação principal: contatar, registrar, mudar estágio ou concluir tarefa.
-3. **O funil cabe no celular.** O vendedor atende na loja com o telefone. Lista, ficha e tarefa funcionam em tela estreita.
+3. **O funil cabe no celular.** O administrador atende na loja com o telefone. Lista, ficha e tarefa funcionam em tela estreita.
 4. **Confiança.** Confirmação depois do interesse, dados da loja visíveis, HTTPS.
 5. **Português direto.** “Interessados”, “Fazer o primeiro contato”, “Marcar como vendida”.
 

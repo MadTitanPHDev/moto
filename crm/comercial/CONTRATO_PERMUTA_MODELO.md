@@ -75,7 +75,7 @@ Documento de origem: `CONTRATO_PERMUTA_MODELO.md` (raiz).
 | 1 | Kickoff, identidade, estágios do funil | Semana 1 |
 | 2 | Site com estoque | Semanas 2–3 |
 | 3 | Captação gravando no CRM | Semanas 4–5 |
-| 4 | Histórico, tarefas, papéis, venda atualizando o site | Semanas 6–8 |
+| 4 | Histórico, tarefas, login de administrador, venda atualizando o site | Semanas 6–8 |
 | 5 | Conteúdo e testes | Semanas 9–10 |
 | 6 | Publicação, backup, treinamento | Semanas 11–12 |
 | 7 | Uso acompanhado e ajustes | Semanas 13–16 |
@@ -197,7 +197,7 @@ Testemunhas:
 ### CRM
 
 - Login com senha
-- Papéis administrador e vendedor
+- Login com senha só para administradores da loja. O visitante não tem conta
 - Cadastro de veículos, fotos, pausar e marcar vendido
 - Pessoas com deduplicação por telefone
 - Interesses com estágios Novo, Contactado, Em negociação, Fechado e Perdido

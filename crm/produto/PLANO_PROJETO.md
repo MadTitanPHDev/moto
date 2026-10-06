@@ -14,9 +14,8 @@ Entregar um site público da loja e um CRM em que cada interessado vira uma fich
 
 | Público | Onde entra | Conta |
 |---|---|---|
-| Visitante / comprador | Site | Sem cadastro |
-| Vendedor | CRM | Login, vê a própria carteira e o estoque |
-| Administrador | CRM | Login, vê tudo, cadastra equipe e dados da loja |
+| Visitante / comprador | Site | Sem cadastro e sem senha |
+| Administrador da loja | CRM | Login. Vê e altera a loja inteira |
 
 ### 1.3 Proposta de valor
 - Preço e ficha da moto visíveis sem pedir no WhatsApp
@@ -83,12 +82,14 @@ Entregar um site público da loja e um CRM em que cada interessado vira uma fich
 - Contador de visualizações da página pública
 - A moto vendida permanece no histórico do interesse
 
-#### RF08 — Equipe e configuração
-- Login com e-mail e senha
-- Papéis: `admin` e `vendedor`
-- Vendedor altera interesses em que é responsável e registra atividades
-- Admin cadastra usuários, edita dados da loja (nome, endereço, telefone, WhatsApp, redes, horário) e vê todos os interesses
-- Exportar interesses em CSV
+#### RF08 — Acesso e configuração
+- Login com e-mail e senha apenas para administradores da loja
+- Um único papel nesta entrega: administrador. Não há conta de visitante nem papel de vendedor
+- Qualquer administrador vê pessoas, interesses, tarefas e estoque
+- O responsável do interesse registra quem faz o retorno. Ele não esconde o registro
+- Administrador edita dados da loja (nome, endereço, telefone, WhatsApp, redes, horário) e pode criar outro administrador
+- Exportar interesses em CSV, com auditoria
+- Detalhe em [../tecnico/SEGURANCA.md](../tecnico/SEGURANCA.md)
 
 #### RF09 — Painel
 - Motos ativas, visualizações, interesses abertos, vendas do mês
@@ -101,7 +102,7 @@ Entregar um site público da loja e um CRM em que cada interessado vira uma fich
 | ID | Requisito |
 |---|---|
 | RNF01 | Catálogo e página da moto respondem em menos de 2 s em 4G típico |
-| RNF02 | HTTPS, senha com hash, sessão do painel, validação de entrada |
+| RNF02 | HTTPS, senha com hash, sessão HttpOnly só no painel, validação no servidor |
 | RNF03 | Backup diário do PostgreSQL, retenção de 30 dias |
 | RNF04 | Mobile-first no site; CRM utilizável no celular da loja |
 | RNF05 | Textos do site e do CRM em português |
@@ -153,7 +154,7 @@ views, featured, singleOwner, abs, soldAt?
 
 ### Usuário da loja
 ```text
-id, name, email, passwordHash, role (admin | seller), active
+id, name, email, passwordHash, active
 ```
 
 ### Loja
@@ -176,18 +177,19 @@ O schema Prisma correspondente está em [../tecnico/EXEMPLOS_CODIGO.md](../tecni
 3. Envia interesse ou chama no WhatsApp.
 4. Vê confirmação. Não cria senha.
 
-### 5.2 Vendedor
-1. Recebe o e-mail e abre a ficha.
-2. Liga ou chama no WhatsApp e registra a atividade.
-3. Move para Contactado ou Em negociação.
-4. Cria tarefa de retorno.
-5. Fecha (moto sai do site) ou marca Perdido com motivo.
+### 5.2 Administrador no dia a dia
+1. Entra com e-mail e senha.
+2. Recebe o e-mail de interesse e abre a ficha.
+3. Liga ou chama no WhatsApp e registra a atividade.
+4. Move para Contactado ou Em negociação.
+5. Cria tarefa de retorno.
+6. Fecha (moto sai do site) ou marca Perdido com motivo.
 
-### 5.3 Administrador
+### 5.3 Administrador no estoque
 1. Publica motos e fotos.
-2. Distribui responsáveis.
-3. Olha o funil e as tarefas atrasadas.
-4. Ajusta telefone, endereço e WhatsApp da loja.
+2. Olha o funil e as tarefas atrasadas.
+3. Ajusta telefone, endereço e WhatsApp da loja.
+4. Pode criar outro administrador, com o mesmo acesso à loja.
 
 ---
 
@@ -210,7 +212,7 @@ O schema Prisma correspondente está em [../tecnico/EXEMPLOS_CODIGO.md](../tecni
 - Lista, ficha, mudança de estágio, e-mail, CSV
 
 ### Fase 2 (semanas 9–14) — conduz a venda
-- Atividades, tarefas, funil, papéis, venda fechando a moto
+- Atividades, tarefas, funil, sessão de administrador, venda fechando a moto
 - Treinamento de duas sessões
 
 ### Fora desta entrega
